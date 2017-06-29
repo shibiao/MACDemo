@@ -22,10 +22,12 @@
     
 }
 -(NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender{
-
-    return NSDragOperationEvery;
+    self.imageView = [sender draggingSource];
+    self.imageView.hidden = YES;
+    return NSDragOperationMove;
 }
 -(BOOL)performDragOperation:(id<NSDraggingInfo>)sender{
+      self.imageView.hidden = YES;
 //    NSData *imageData = [[sender draggingPasteboard]dataForType:NSTIFFPboardType];
 //    self.imageView = [[SBImageView alloc]initWithFrame:NSMakeRect(0, 0, 50, 100)];
 //    [self addSubview:self.imageView];
@@ -37,7 +39,7 @@
 //    self.imageView.image = image;
 
     
-    self.imageView = [sender draggingSource];
+//    self.imageView = [sender draggingSource];
     NSPoint point = [sender draggedImageLocation];
     point = [self convertPoint:point fromView:nil];
     
@@ -53,17 +55,18 @@
 }
 - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender{
     
-    return NSDragOperationGeneric;
+    return NSDragOperationMove;
 }
 - (void)draggingExited:(nullable id <NSDraggingInfo>)sender{
-
+    self.imageView.hidden = NO;
+    [self.imageView layout];
 }
 - (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender{
     return YES;
 }
 
 - (void)concludeDragOperation:(nullable id <NSDraggingInfo>)sender{
-
+    self.imageView.hidden = NO;
 }
 
 /* draggingEnded: is implemented as of Mac OS 10.5 */
