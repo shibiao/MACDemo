@@ -8,7 +8,7 @@
 
 #import "SBImageView.h"
 #import "SBView.h"
-
+#import <Masonry.h>
 @implementation SBImageView
 -(NSTextField *)textField{
     if (!_textField) {
@@ -18,7 +18,6 @@
         _textField.editable = NO;
         _textField.selectable = NO;
         _textField.stringValue = @"HHHHHH";
-        [_textField setTranslatesAutoresizingMaskIntoConstraints:NO];
         
         [_textField unregisterDraggedTypes];
     }
@@ -42,11 +41,10 @@
     [super drawRect:dirtyRect];
     
     [self addSubview:self.textField];
-    [self.textField.topAnchor constraintEqualToAnchor:self.topAnchor constant:padding].active = YES;
-    [self.textField.leftAnchor constraintEqualToAnchor:self.leftAnchor constant:padding].active = YES;
-    [self.textField.rightAnchor constraintEqualToAnchor:self.rightAnchor constant:-padding].active = YES;
-    [self.textField.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-padding].active = YES;
-    // Drawing code here.
+    [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self).insets(NSEdgeInsetsMake(padding, padding, padding, padding));
+        make.height.mas_equalTo(self).offset(20);
+    }];
 }
 -(void)mouseDown:(NSEvent *)event{
     NSPasteboardItem *pasteboardItem = [[NSPasteboardItem alloc]init];

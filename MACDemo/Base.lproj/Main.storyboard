@@ -689,7 +689,7 @@
                             <imageView focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dw0-zP-si5" customClass="SBImageView">
                                 <rect key="frame" x="332" y="209" width="114" height="51"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" focusRingType="none" alignment="left" imageScaling="proportionallyDown" id="L1D-3V-0p8"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" focusRingType="none" alignment="left" imageScaling="axesIndependently" image="111" id="L1D-3V-0p8"/>
                             </imageView>
                         </subviews>
                     </view>
@@ -702,4 +702,7 @@
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="111" width="480" height="720"/>
+    </resources>
 </document>

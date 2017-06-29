@@ -18,7 +18,8 @@
     [super drawRect:dirtyRect];
     self.wantsLayer = YES;
 //    self.layer.backgroundColor = [NSColor redColor].CGColor;
-
+    
+    
     
 }
 -(NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender{
