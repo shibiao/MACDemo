@@ -7,10 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+//上下左右间距
+static CGFloat padding = 10;
 @interface SBImageView : NSImageView<NSPasteboardItemDataProvider,NSDraggingSource>
 
-
+@property (nonatomic,strong) NSTextField *textField;
 
 @end
 @interface NSView (SnapShot)

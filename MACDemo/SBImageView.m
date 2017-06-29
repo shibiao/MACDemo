@@ -8,12 +8,42 @@
 
 #import "SBImageView.h"
 #import "SBView.h"
-@implementation SBImageView
 
+@implementation SBImageView
+-(NSTextField *)textField{
+    if (!_textField) {
+        _textField = [[NSTextField alloc]init];
+        _textField.bordered = NO;
+        _textField.bezeled = NO;
+        _textField.editable = NO;
+        _textField.selectable = NO;
+        _textField.stringValue = @"HHHHHH";
+        [_textField setTranslatesAutoresizingMaskIntoConstraints:NO];
+    }
+    return _textField;
+}
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     self.focusRingType = NSFocusRingTypeNone;
+    self.wantsLayer = YES;
+    self.layer.backgroundColor = [NSColor whiteColor].CGColor;
+    self.layer.borderWidth = 2;
+    self.layer.borderColor = [NSColor redColor].CGColor;
+    self.layer.cornerRadius = 10;
     [self setHighlighted:NO];
+    [self addSubview:self.textField];
+    [self.textField.topAnchor constraintEqualToAnchor:self.topAnchor constant:padding].active = YES;
+    [self.textField.leftAnchor constraintEqualToAnchor:self.leftAnchor constant:padding].active = YES;
+    [self.textField.rightAnchor constraintEqualToAnchor:self.rightAnchor constant:-padding].active = YES;
+    [self.textField.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-padding].active = YES;
     // Drawing code here.
 }
 -(void)mouseDown:(NSEvent *)event{
