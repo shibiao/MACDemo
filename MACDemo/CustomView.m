@@ -23,7 +23,7 @@
 }
 -(NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender{
 
-    return NSDragOperationMove;
+    return NSDragOperationEvery;
 }
 -(BOOL)performDragOperation:(id<NSDraggingInfo>)sender{
 //    NSData *imageData = [[sender draggingPasteboard]dataForType:NSTIFFPboardType];
@@ -38,11 +38,17 @@
 
     
     self.imageView = [sender draggingSource];
-    NSPoint point = [sender draggingLocation];
+    NSPoint point = [sender draggedImageLocation];
     point = [self convertPoint:point fromView:nil];
-
-    self.imageView.frame = CGRectMake(point.x-25, point.y-50, 50, 100);
-
+    
+    [self.imageView setFrameOrigin:point];
+//    [self.imageView translateOriginToPoint:point];
+//    NSView
+//    [self.imageView.layer setAffineTransform:CGAffineTransformTranslate(self.imageView.layer.affineTransform, point.x, point.y)];
+//    [self.imageView.layer setAffineTransform:CGAffineTransformIdentity];
+    
+//    self.imageView.frame = CGRectMake(point.x-25, point.y-50, 50, 100);
+    
     return YES;
 }
 - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender{
@@ -59,8 +65,9 @@
 - (void)concludeDragOperation:(nullable id <NSDraggingInfo>)sender{
 
 }
-/* draggingEnded: is implemented as of Mac OS 10.5 */
-- (void)draggingEnded:(nullable id <NSDraggingInfo>)sender{
 
-}
+/* draggingEnded: is implemented as of Mac OS 10.5 */
+//- (void)draggingEnded:(nullable id <NSDraggingInfo>)sender{
+//
+//}
 @end
